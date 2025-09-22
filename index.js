@@ -9,13 +9,15 @@ function lcm(a, b) {
 const emailPath = 'tanveera915637_gmail_com';
 
 app.get(`/${emailPath}`, (req, res) => {
-    let x = parseInt(req.query.x);
-    let y = parseInt(req.query.y);
+    const x = Number(req.query.x);
+    const y = Number(req.query.y);
 
-    if (!x || !y || x <= 0 || y <= 0) {
+    if (!Number.isInteger(x) || !Number.isInteger(y) || x <= 0 || y <= 0) {
+        res.type('text/plain'); // ensures plain text
         return res.send('NaN');
     }
 
+    res.type('text/plain'); // ensures plain text
     res.send(lcm(x, y).toString());
 });
 
